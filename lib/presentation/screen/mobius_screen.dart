@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:mobius_2d_scroll/application/bloc/mobius_bloc.dart';
 import 'package:mobius_2d_scroll/presentation/model/mobius_schdule_view_data.dart';
@@ -85,9 +83,6 @@ class __ViewState extends State<_View> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     if (_data.rows.isEmpty) return const SizedBox.shrink();
 
-    final maxRowLength = _data.rows
-        .fold<int>(0, (prev, element) => max(prev, element.cells.length));
-
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,7 +101,7 @@ class __ViewState extends State<_View> with TickerProviderStateMixin {
                     physics: const ClampingScrollPhysics(),
                   ),
                   delegate: TwoDimensionalChildBuilderDelegate(
-                    maxXIndex: maxRowLength - 1,
+                    maxXIndex: _data.maxCellsCount - 1,
                     maxYIndex: _data.rows.length - 1,
                     builder: (context, vicinity) {
                       vicinity = vicinity as MobiusChildVicinity;

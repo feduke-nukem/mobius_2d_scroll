@@ -278,7 +278,6 @@ class _RenderViewport extends RenderTwoDimensionalViewport {
         begin: row.collapsedHeight,
         end: row.collapsedHeight,
       );
-
       final rowHeight = rowHeightTween.evaluate(_animation);
       final rowTweenEndHeight =
           row.hasSelectedCell ? row.expandedHeight : row.collapsedHeight;
@@ -287,8 +286,11 @@ class _RenderViewport extends RenderTwoDimensionalViewport {
           rowIndex == 0 ? allRowsHeight : allRowsHeight + _data.rowSpacing;
       final rowEnds = rowStarts + rowHeight;
 
-      final isVisibleVertically = rowStarts < verticalPixels + viewportHeight &&
-          rowEnds > verticalPixels;
+      final isPartiallyVisibleAbove =
+          rowStarts < verticalPixels + viewportHeight;
+      final isPartiallyVisibleBelow = rowEnds > verticalPixels;
+      final isVisibleVertically =
+          isPartiallyVisibleAbove && isPartiallyVisibleBelow;
 
       totalHeight = math.max(rowEnds, totalHeight);
 

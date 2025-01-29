@@ -10,11 +10,13 @@ class MobiusScheduleViewData with EquatableMixin {
   final double width;
   final String? selectedSpeechId;
   final double rowSpacing;
+  final int maxCellsCount;
 
   const MobiusScheduleViewData._({
     required this.rows,
     required this.width,
     required this.selectedSpeechId,
+    required this.maxCellsCount,
     this.rowSpacing = 0,
   });
 
@@ -26,6 +28,7 @@ class MobiusScheduleViewData with EquatableMixin {
     double rowSpacing = 0,
   }) {
     var width = 0.0;
+    var maxCellsCount = 0;
     final rows = <MobiusScheduleViewRow>[];
     for (final schedule in schedules) {
       final row = MobiusScheduleViewRow(
@@ -43,12 +46,14 @@ class MobiusScheduleViewData with EquatableMixin {
           scale: scale,
         ),
       );
+      maxCellsCount = max(maxCellsCount, row.cells.length);
     }
     return MobiusScheduleViewData._(
       rows: rows,
       width: width,
       selectedSpeechId: selectedSpeechId,
       rowSpacing: rowSpacing,
+      maxCellsCount: maxCellsCount,
     );
   }
 

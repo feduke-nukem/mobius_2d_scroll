@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:mobius_2d_scroll/presentation/widget/mobius_schedule_view.dart';
 
 typedef LayoutChildSequenceDelegate = DelegatedViewportData Function(
-  InnerViewportData data,
+  ChildViewportData data,
 );
 
 class MobiusScheduleViewChildViewport extends Viewport {
@@ -70,7 +70,7 @@ class _RenderViewport extends RenderViewport {
     required double cacheOrigin,
   }) {
     final data = delegate(
-      InnerViewportData(
+      ChildViewportData(
         scrollOffset: scrollOffset,
         overlap: overlap,
         layoutOffset: layoutOffset,
@@ -129,7 +129,7 @@ class DelegatedViewportData {
   });
 }
 
-class InnerViewportData {
+class ChildViewportData {
   final double scrollOffset;
   final double overlap;
   final double layoutOffset;
@@ -140,7 +140,7 @@ class InnerViewportData {
   final double remainingCacheExtent;
   final double cacheOrigin;
 
-  const InnerViewportData({
+  const ChildViewportData({
     required this.scrollOffset,
     required this.overlap,
     required this.layoutOffset,
