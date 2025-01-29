@@ -1,0 +1,28 @@
+name: mobius_2d_scroll
+description: Mobius spring 2025
+publish_to: 'none'
+version: 0.1.0
+homepage: https://mobiusconf.com/
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  collection: any
+  equatable: 2.0.7
+  provider: ^6.1.2
+  rxdart: ^0.28.0
+  flutter_bloc: ^9.0.0
+  cached_network_image: ^3.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
